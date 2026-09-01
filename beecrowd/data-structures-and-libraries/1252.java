@@ -7,7 +7,7 @@ public class Main {
             return chave<num;
         }
         else if(chave%2==0 && num%2==0){
-            return chave>num;
+            return chave%m>num%m;
         }
         else if(chave%2!=0 && num%2!=0){
             return chave<num;
