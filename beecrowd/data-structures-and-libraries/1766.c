@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 typedef struct{
     char str[256];
-    int w,a;
-    float h;
+    int weight,age;
+    float height;
 }Reindeers;
 void strCopy(char* destino,char* origem){
     while(*origem!='\0'){
@@ -13,28 +14,55 @@ void strCopy(char* destino,char* origem){
     }
     *destino='\0';
 }
-void setReindeer(Reindeer* r,char* str,int w,int a,float h){
+void setReindeer(Reindeers* r,char* str,int w,int a,float h){
     strCopy((*r).str,str);
-    (*r).w=w;
-    (*r).a=a;
-    (*r).h=h;
+    (*r).weight=w;
+    (*r).age=a;
+    (*r).height=h;
 }
-int size(char* str){
-    int count=0;
-    while(*str!='\0'){
-        count++;
-        str++;
+
+int conditions(Reindeers* array,Reindeers key,int j){
+    if(key.weight>array[j].weight){
+        return 1;
     }
-    return count;
-}
-void readline(char* str,int tam){
-    fgets(str,tam,stdin);
-    if(str[size(str)-1]==''\n){
-        str[size(str)-1]='\0';
+    else if(key.weight==array[j].weight){
+        if(key.age<array[j].age){
+            return 1;
+        }
+        else if(key.age==array[j].age){
+            if(key.height<array[j].height){
+                return 1;
+            }
+            else if(key.height==array[j].height){
+                if(strcmp(key.str,array[j].str)<0){
+                    return 1;
+                }
+                else{
+                    return 0;
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return 0;
+        }
+    }
+    else{
+        return 0;
     }
 }
-void sort(Reinder* array){
-    
+void sort(Reindeers* array,int n){
+    for(int i=1;i<n;i++){
+        Reindeers key= array[i];
+        int j=i-1;
+        while(j>=0 && conditions(array,key,j)){
+            array[j+1]=array[j];
+            j--;
+        }
+        array[j+1]=key;
+    }
 }
 int main() {
     int t;
@@ -43,20 +71,19 @@ int main() {
         printf("CENARIO {%d}\n",i);
         int n,m;
         scanf("%d %d",&n,&m);
-        getchar();
-        Reindeers* totalArray=malloc(n*sizeof(int));
-        Reindeers* sleighArray=malloc(m*sizeof(int));
+        Reindeers* totalArray=malloc(n*sizeof(Reindeers));
         char str[256];
         int w,a;
         float h;
         for(int j=0;j<n;j++){
-            readline(str,256);
-            scanf("%d %d %f",&w,&a,&h);
-            getchar();
-            setReindeer(&totalArray[i],str,w,a,h);
+            scanf("%s %d %d %f",str,&w,&a,&h);
+            setReindeer(&totalArray[j],str,w,a,h);
         }
-        sort(totalArray);
-        
+        sort(totalArray,n);
+        for(int j=0;j<m;j++){
+            printf("%d - %s\n",j+1,totalArray[j].str);
+        }
+        free(totalArray);
     }
     return 0;
 }
