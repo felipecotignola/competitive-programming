@@ -2,12 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 typedef struct Package{
-    char package[7];
+    char package[8];
     int number;
 }Package;
 Package* newPackage(char* input,int x){
     Package* p=malloc(sizeof(Package));
-    strncpy(p->package,input,7);
+    strncpy(p->package,input,8);
     p->number=x;
     return p;
 }
@@ -76,7 +76,7 @@ void freeList(List* l){
 	free(l);
 }
 int main(){
-    char input[7];
+    char input[8];
     List* l=newList();
     while(scanf("%s",input)!=EOF){
         if(input[0]=='1'){
