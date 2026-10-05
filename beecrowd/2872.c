@@ -7,7 +7,7 @@ typedef struct Package{
 }Package;
 Package* newPackage(char* input,int x){
     Package* p=malloc(sizeof(Package));
-    strncpy(p->package,input);
+    strncpy(p->package,input,7);
     p->number=x;
     return p;
 }
@@ -35,7 +35,7 @@ List* newList(){
     l->h=n;
     l->t=n;
     l->q=0;
-    new l;
+    return l;
 }
 void insert(List* l,Package* p){
     Node* n=newNode(p);
