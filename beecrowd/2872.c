@@ -63,6 +63,17 @@ void print(List* l){
     }
     printf("\n");
 }
+void freeList(List* l){
+	Node* nav=l->h;
+	Node* tmp;
+	while(nav!=NULL){
+		tmp=nav->next;
+		free(nav->p);
+		free(nav);
+		nav=tmp;
+	}
+	free(l);
+}
 int main(){
     char input[7];
     while(scanf("%s",input)!=EOF){
@@ -80,7 +91,7 @@ int main(){
         if(input[0]=='0'){
             sort(l);
             print(l);
-            free(l);
+            freeList(l);
         }
         scanf("%s",input);
     }
