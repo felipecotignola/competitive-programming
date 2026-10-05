@@ -35,6 +35,7 @@ List* newList(){
     l->h=n;
     l->t=n;
     l->q=0;
+    new l;
 }
 void insert(List* l,Package* p){
     Node* n=newNode(p);
@@ -96,6 +97,6 @@ int main(){
         }
         scanf("%s",input);
     }
-    free(l);
+    freeList(l);
     return 0;
 }
