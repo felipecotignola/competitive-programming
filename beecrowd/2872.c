@@ -92,8 +92,10 @@ int main(){
             sort(l);
             print(l);
             freeList(l);
+	    l=newList();
         }
         scanf("%s",input);
     }
+    free(l);
     return 0;
 }
