@@ -93,7 +93,6 @@ int main(){
         print(l);
         freeList(l);
         l=newList();
-        scanf("%s",input);
     }
     freeList(l);
     return 0;
