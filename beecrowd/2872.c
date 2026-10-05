@@ -81,20 +81,18 @@ int main(){
     while(scanf("%s",input)!=EOF){
         if(input[0]=='1'){
             scanf("%s",input);
-            while(input[0]!='1'){
+            while(input[0]!='0'){
                 int x;
                 scanf("%d",&x);
                 Package* package=newPackage(input,x);
                 insert(l,package);
                 scanf("%s",input);
             }
-        }
-        if(input[0]=='0'){
-            sort(l);
-            print(l);
-            freeList(l);
-	    l=newList();
-        }
+        } 
+	sort(l);
+        print(l);
+        freeList(l);
+        l=newList();
         scanf("%s",input);
     }
     freeList(l);
