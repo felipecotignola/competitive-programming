@@ -7,7 +7,7 @@ typedef struct Package{
 }Package;
 Package* newPackage(char* input,int x){
     Package* p=malloc(sizeof(Package));
-    strcpy(p->package,input);
+    strncpy(p->package,input);
     p->number=x;
     return p;
 }
