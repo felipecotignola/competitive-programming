@@ -76,8 +76,8 @@ void freeList(List* l){
 }
 int main(){
     char input[7];
+    List* l=newList();
     while(scanf("%s",input)!=EOF){
-        List* l=newList();
         if(input[0]=='1'){
             scanf("%s",input);
             while(input[0]!='1'){
